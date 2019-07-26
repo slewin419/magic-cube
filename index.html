@@ -6,88 +6,138 @@
     <script src="./dist/index.js" type="text/javascript" defer/>
 </head>
 <body>
-    <div id="app">
-        <header>
-            <h1 class="title">Magic Cube</h1>
-            <hr/>
-        </header>
-        <main>
-            <div class="card">
-                <img alt="Cubes" class="card-img" src="magic-cube.jpg"/>
-                <div class="card-content">
-                    <h5 class="text-center"><span class="txt-blue">
+<div id="app">
+    <header>
+        <h1 class="title">Magic Cube</h1>
+        <hr/>
+    </header>
+    <main>
+        <div class="card">
+            <img alt="Cubes" class="card-img" src="magic-cube.jpg"/>
+            <div class="card-content">
+                <h5 class="text-center"><span class="txt-blue">
                         Only <span id="funding-days-left">5</span> days left</span> to fund this project.
-                    </h5>
-                    <div class="progress-bar">
-                        <div class="bar"></div>
+                </h5>
+                <div class="progress-bar">
+                    <div class="bar"></div>
+                </div>
+                <div class="text-center" id="complete-funding-status">
+                    $<strong id="funding-remaining">600</strong> needed to complete funding
+                </div>
+                <div>
+                    <form action="" id="donation-form" method="">
+                        <div class="input-group">
+                            <span class="pre-text">$</span>
+                            <input id="donation-amount" name="donation_amount" type="text" value="0"/>
+                        </div>
+                        <button class="btn" id="donate-now-btn" type="submit">Donate Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Accordion-->
+        <section>
+            <div class="panel active">
+                <div class="panel-header">
+                    <a href="#more-info">More Info</a>
+                </div>
+                <div class="panel-body" id="more-info">
+                    <p>Join the <span class="number-of-donations">0</span> other donors who have already supported this
+                        project. Every dollar helps.</p>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <a href="#even-more-info">Even More Info</a>
+                </div>
+                <div class="panel-body" id="even-more-info">
+                    <p>Lorem ipsum dolor amet brunch pabst truffaut, hell of knausgaard ramps franzen coloring book
+                        dreamcatcher forage vinyl wolf sriracha activated charcoal. Letterpress fashion axe street art
+                        trust
+                        fund adaptogen kombucha asymmetrical etsy brunch blog. Godard roof party shaman poutine austin
+                        lo-fi
+                        everyday carry. Skateboard lomo kinfolk chillwave wayfarers taxidermy disrupt distillery
+                        meggings
+                        typewriter readymade austin YOLO. Swag godard blog shoreditch church-key, master cleanse
+                        actually.</p>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <a href="#the-most-info">The Most Info</a>
+                </div>
+                <div class="panel-body" id="the-most-info">
+                    <p>
+                        Lorem ipsum dolor amet fashion axe hot chicken four loko street art austin umami adaptogen
+                        pickled scenester offal pork belly. Photo booth meh bespoke, selvage cornhole waistcoat kogi.
+                        Vaporware church-key fam af. Master cleanse taxidermy hexagon, selvage vice +1 iceland pinterest
+                        try-hard put a bird on it cornhole gentrify whatever. Blog leggings pitchfork shaman portland,
+                        master cleanse pickled synth.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!--Tabs-->
+        <section>
+            <div class="tabs">
+                <ul class="tabs-nav">
+                    <li class="active"><a href="#more-info-tab">More Info</a></li>
+                    <li><a href="#even-more-info-tab">Even More Info</a></li>
+                    <li><a href="#the-most-info-tab">The Most Info</a></li>
+                </ul>
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="more-info-tab">
+                        <p>Join the <span class="number-of-donations">0</span> other donors who have already supported
+                            this project. Every dollar helps.</p>
                     </div>
-                    <div class="text-center" id="complete-funding-status" >
-                        $<strong id="funding-remaining">150</strong> needed to complete funding
+                    <div class="tab-panel" id="even-more-info-tab">
+                        <p>Lorem ipsum dolor amet sriracha craft beer cardigan iceland polaroid hot chicken pickled
+                            retro viral keytar chia edison bulb helvetica. Literally authentic wolf, vape trust fund
+                            knausgaard microdosing next level locavore. Godard shaman lomo YOLO freegan taiyaki artisan
+                            fingerstache 90's wayfarers copper mug cold-pressed. Glossier jianbing iPhone tousled copper
+                            mug, adaptogen readymade knausgaard. Flexitarian chillwave viral cray, banh mi typewriter
+                            poke lumbersexual. Echo park viral knausgaard lomo cornhole mixtape banjo hell of woke
+                            subway tile. Lyft copper mug brooklyn vape, post-ironic mumblecore pitchfork yr literally
+                            brunch readymade flannel.</p>
                     </div>
-                    <div>
-                        <form action="" id="donation-form" method="">
-                            <div class="input-group">
-                                <span class="pre-text">$</span>
-                                <input id="donation-amount" name="donation_amount" type="text" value="0"/>
-                            </div>
-                            <button class="btn" id="donate-now-btn" type="submit">Donate Now</button>
-                        </form>
+                    <div class="tab-panel" id="the-most-info-tab">
+                        <p>Lorem ipsum dolor amet wayfarers butcher swag kinfolk, hella brunch lomo etsy umami stumptown
+                            plaid street art fanny pack. Godard neutra bushwick taiyaki. Live-edge four loko roof party
+                            tumeric snackwave heirloom, raclette health goth. Knausgaard adaptogen brunch tote bag XOXO
+                            artisan umami before they sold out migas. Skateboard raclette art party normcore sustainable
+                            you probably haven't heard of them kale chips edison bulb plaid sartorial health goth enamel
+                            pin YOLO kitsch. Live-edge tumeric disrupt enamel pin seitan hella subway tile four loko
+                            master cleanse poke synth meggings tbh. Skateboard ugh raclette adaptogen.</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!--Accordion-->
-            <section>
-                <div class="panel active">
-                    <div class="panel-header">More Info</div>
-                    <div class="panel-body">
-                        <p>Join the <span id="number-of-donations">0</span> other donors who have already supported this project. Every dollar helps.</p>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header">Even More Info</div>
-                    <div class="panel-body"></div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header">The Most Info</div>
-                    <div class="panel-body"></div>
-                </div>
-            </section>
-
-            <!--Tabs-->
-            <section>
-                <div class="tabs">
-                    <ul class="tabs-nav">
-                        <li class="active"><a href="">More Info</a></li>
-                        <li><a href="">Even More Info</a></li>
-                        <li><a href="">The Most Info</a></li>
-                    </ul>
-                    <div class="tabs-content">
-                        <div class="tab-panel active" id="">
-                            <p>Tab Content #1</p>
-                        </div>
-                        <div class="tab-panel">
-                            <p>Tab Content #2</p>
-                        </div>
-                        <div class="tab-panel">
-                            <p>Tab Content #3</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--Weather-->
-            <section>
-                <div id="ajax-content">
-                    AJAX content goes here
-                </div>
-            </section>
-        </main>
+        <!--Weather-->
+        <section>
+            <div id="weather-display">
+                AJAX content goes here
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
         <hr/>
-        <footer id="footer">
-            <button class="btn">Orlando Weather</button>
-            <button class="btn">Denver Weather</button>
-        </footer>
+        <button class="btn weather-btn" data-city-id="4167147">Orlando Weather</button>
+        <button class="btn weather-btn" data-city-id="5419384">Denver Weather</button>
+    </footer>
+</div>
+<div class="modal" id="confirm-donation-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <a class="close-modal">X</a>
+            <p>Are you sure you want to donate $<span id="confirm-donation-amount">0</span></p>
+            <button class="btn">No</button>
+            <button class="btn">Yes</button>
+        </div>
     </div>
+</div>
+<div id="modal-backdrop"></div>
 </body>
 </html>

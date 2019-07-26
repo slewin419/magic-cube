@@ -7,7 +7,6 @@ const babel       = require("gulp-babel");
 
 function serve(done){
   browsersync.init({
-    browser: "chrome",
     server: {
       baseDir: "./"
     }

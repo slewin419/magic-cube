@@ -5,6 +5,11 @@ body {
   font-family: Arial, sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 hr {
   color: $gray;
 }
@@ -17,14 +22,15 @@ section {
   margin: 50px 0;
 }
 
-#ajax-content {
+#weather-display {
   border: 2px solid black;
   text-align: center;
   height: 200px;
+  overflow: auto;
+  margin-bottom: 100px;
 }
 
-main,
-footer {
+main {
   margin: 0 20%;
 }
 
@@ -52,17 +58,57 @@ footer {
   border: none;
   background: rgb(18,166,81);
   color: white;
-  width: 75%;
+  width: 73%;
   padding: 12px;
   font-size: 18px;
 }
 
 #footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  text-align: center;
   .btn {
-    width: 48%;
-    &:last-child {
-      float: right;
-    }
+    width: 28.5%;
+    margin: 0 1%;
+  }
+}
+
+#modal-backdrop{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.25s linear;
+  z-index: 1000;
+  &.show{
+    opacity: 0.7;
+    display: block;
+  }
+}
+
+#confirm-donation-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  &.show {
+    display: block;
+  }
+  .modal-dialog{
+    background: white;
+    margin: 30% auto;
+    width: 30%;
+    text-align: center;
   }
 }
 
@@ -94,8 +140,8 @@ footer {
       transform: rotate(45deg);
     }
     .panel-body {
-      display: block;
-      max-height: 9999px;
+      max-height: 1000px;
+      transition: max-height 1s ease-in-out;
     }
   }
   .panel-header {
@@ -113,8 +159,10 @@ footer {
     }
   }
   .panel-body {
-    display:none;
-    padding: 10px 15px;
+    max-height: 0;
+    padding: 0 15px;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
   }
 }
 
@@ -125,6 +173,7 @@ footer {
 
   .bar {
     width: 0%;
+    max-width: 100%;
     background: rgb(1,24,255);
     height: 100%;
   }
@@ -137,16 +186,13 @@ footer {
     list-style-type: none;
     padding-left: 0;
     margin-bottom: 0;
-    a {
-      text-decoration: none;
-      color: black;
-    }
+
     li {
       background: $gray;
       box-sizing: border-box;
       padding: 10px 10px;
       text-align: center;
-      width: 30%;
+      width: 32%;
       cursor: pointer;
       opacity: 0.6;
       &.active {
@@ -159,7 +205,7 @@ footer {
     position: relative;
     overflow: auto;
     border: 1px solid $gray;
-    height: 300px;
+    height: 200px;
     > .tab-panel {
       position: absolute;
       display: none;
