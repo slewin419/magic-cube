@@ -6,6 +6,7 @@
       totalDonationAmount = 0,
       fundingProgressPercent = 0,
       fundingGoalAmount = 600;
+
   var $fundingDaysLeft = $('#funding-days-left'),
       $fundingRemaining = $('#funding-remaining'),
       $donationForm = $('#donation-form'),
@@ -68,7 +69,7 @@
     e.preventDefault();
     var donationAmount = parseInt($donationAmount.val());
 
-    if (donationAmount <= 0) {
+    if (donationAmount <= 0 || donationAmount === null) {
       return false;
     }
 
@@ -79,6 +80,7 @@
         addDonation(donationAmount);
         numOfDonations++;
         renderForm();
+        alert("Thank you for your donation!");
       }
     });
 

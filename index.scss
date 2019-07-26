@@ -251,7 +251,7 @@ main {
   background: white;
   text-align: center;
   &:after, &:before {
-    content: '----------------';
+    content: '--------------';
     letter-spacing: -3px;
     padding: 0 20px;
     font-weight: 100;

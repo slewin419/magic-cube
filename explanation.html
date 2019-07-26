@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explanation</title>
+</head>
+<body>
+    <h1>Explanation</h1>
+    <p>
+        My biggest obstacle for this project was using gulp.js.  Gulp's primary purpose was to compile my SCSS to CSS.
+        I had some trouble setting that up initially. Gulp 4 is very different from Gulp 3. Also the OpenWeatherAPI was
+        return an invalid API key error when using the city name as the "q" parameter, but worked fine when passing the city          ID as the "id" paramater. ¯\_(ツ)_/¯
+    </p>
+    <p>
+        The index.js file has three main parts to it.  The first being the confirm2 function that uses a deffered object
+        that resolves to true or false depending on your choice.  I did it that way to so it could be used similar to how the         native confirm function is used. The second part is the renderForm function that renders the view with the updated           data.  The third function being the getWeatherData function that calls the OpenWeatherAPI with the given cityId.
+    </p>
+</body>
+</html>
