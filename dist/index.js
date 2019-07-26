@@ -50,6 +50,7 @@
         } else {
             defer.resolve("false");
             closeConfirm();
+            $donationAmount.focus();
         }
     });
 
@@ -89,6 +90,9 @@
     $numOfDonations.text(getNumberOfDonations);
     $fundingProgressBar.css('width', function() {
       return donationProgress() + '%';
+    });
+    $('#complete-funding-status').find('.arrow').css('left', function(){
+      return 'calc(' + donationProgress() + '% - 7px)';
     });
   }
 
