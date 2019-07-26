@@ -3,52 +3,80 @@
     <title>Magic Cube</title>
     <link href="index.css" rel="stylesheet" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+    <script src="./dist/index.js" type="text/javascript" defer/>
 </head>
 <body>
     <div id="app">
         <header>
-            <h1>Magic Cube</h1>
+            <h1 class="title">Magic Cube</h1>
             <hr/>
         </header>
         <main>
-            <img src="magic-cube.jpg" alt="Cubes"/>
+            <div class="card">
+                <img alt="Cubes" class="card-img" src="magic-cube.jpg"/>
+                <div class="card-content">
+                    <h5 class="text-center"><span class="txt-blue">
+                        Only <span id="funding-days-left">5</span> days left</span> to fund this project.
+                    </h5>
+                    <div class="progress-bar">
+                        <div class="bar"></div>
+                    </div>
+                    <div class="text-center" id="complete-funding-status" >
+                        $<strong id="funding-remaining">150</strong> needed to complete funding
+                    </div>
+                    <div>
+                        <form action="" id="donation-form" method="">
+                            <div class="input-group">
+                                <span class="pre-text">$</span>
+                                <input id="donation-amount" name="donation_amount" type="text" value="0"/>
+                            </div>
+                            <button class="btn" id="donate-now-btn" type="submit">Donate Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Accordion-->
             <section>
-                <h5>Only 5 days left to fund this project.</h5>
-                <div class="progress-bar"></div>
-                <button>00 needed to complete funding</button>
-                <div>
-                    <input type="number">
-                    <button>Donate Now</button>
+                <div class="panel active">
+                    <div class="panel-header">More Info</div>
+                    <div class="panel-body">
+                        <p>Join the <span id="number-of-donations">0</span> other donors who have already supported this project. Every dollar helps.</p>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-header">Even More Info</div>
+                    <div class="panel-body"></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-header">The Most Info</div>
+                    <div class="panel-body"></div>
                 </div>
             </section>
-            <section>
-                <div class="panel">
-                    <div class="panel-header"></div>
-                    <div class="panel-body"></div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header"></div>
-                    <div class="panel-body"></div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header"></div>
-                    <div class="panel-body"></div>
-                </div>
-            </section>
+
+            <!--Tabs-->
             <section>
                 <div class="tabs">
-                    <ul>
-                        <li>More Info</li>
-                        <li>Even More Info</li>
-                        <li>The Most Info</li>
+                    <ul class="tabs-nav">
+                        <li class="active"><a href="">More Info</a></li>
+                        <li><a href="">Even More Info</a></li>
+                        <li><a href="">The Most Info</a></li>
                     </ul>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-panel"></div>
-                    <div class="tab-panel"></div>
-                    <div class="tab-panel"></div>
+                    <div class="tabs-content">
+                        <div class="tab-panel active" id="">
+                            <p>Tab Content #1</p>
+                        </div>
+                        <div class="tab-panel">
+                            <p>Tab Content #2</p>
+                        </div>
+                        <div class="tab-panel">
+                            <p>Tab Content #3</p>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            <!--Weather-->
             <section>
                 <div id="ajax-content">
                     AJAX content goes here
@@ -56,9 +84,9 @@
             </section>
         </main>
         <hr/>
-        <footer>
-            <button>Orlando Weather</button>
-            <button>Denver Weather</button>
+        <footer id="footer">
+            <button class="btn">Orlando Weather</button>
+            <button class="btn">Denver Weather</button>
         </footer>
     </div>
 </body>
