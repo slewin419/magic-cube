@@ -1,9 +1,9 @@
 'use strict';
 
 (function() {
-  var fundingDaysLeft = 0,
-      numOfDonations = 0,
-      totalDonationAmount = 0,
+  var fundingDaysLeft = 5,
+      numOfDonations = 26,
+      totalDonationAmount = 450,
       fundingProgressPercent = 0,
       fundingGoalAmount = 600;
 
