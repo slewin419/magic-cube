@@ -52,7 +52,7 @@ main {
 
 #footer {
   position: fixed;
-  bottom: 0;
+  bottom: 10px;
   left: 0;
   width: 100%;
   background: white;
@@ -73,7 +73,7 @@ main {
   transition: opacity 0.25s linear;
   z-index: 1000; }
   #modal-backdrop.show {
-    opacity: 0.7;
+    opacity: 0.9;
     display: block; }
 
 #confirm-donation-modal {
@@ -86,11 +86,27 @@ main {
   z-index: 2000; }
   #confirm-donation-modal.show {
     display: block; }
+  #confirm-donation-modal .close-modal {
+    position: absolute;
+    right: -17px;
+    top: -24px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer; }
+  #confirm-donation-modal .modal-content {
+    position: relative;
+    box-sizing: border-box;
+    padding: 15px; }
   #confirm-donation-modal .modal-dialog {
     background: white;
     margin: 30% auto;
-    width: 30%;
+    width: 60%;
+    min-width: 400px;
     text-align: center; }
+  #confirm-donation-modal .btn {
+    width: 33%;
+    margin: 0 2%; }
 
 .btn {
   -webkit-appearance: none;
@@ -107,7 +123,6 @@ main {
     top: -4px;
     left: 9px;
     color: #dddddd;
-    opacity: 0.7;
     font-size: 22px; }
 
 .panel {
@@ -133,7 +148,7 @@ main {
     max-height: 0;
     padding: 0 15px;
     overflow: hidden;
-    transition: max-height 0.25s ease-in-out; }
+    transition: max-height 0.3s ease-in-out; }
 
 .progress-bar {
   border: 1px solid #dddddd;

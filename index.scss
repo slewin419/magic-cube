@@ -65,7 +65,7 @@ main {
 
 #footer {
   position: fixed;
-  bottom: 0;
+  bottom: 10px;
   left: 0;
   width: 100%;
   background: white;
@@ -88,7 +88,7 @@ main {
   transition: opacity 0.25s linear;
   z-index: 1000;
   &.show{
-    opacity: 0.7;
+    opacity: 0.9;
     display: block;
   }
 }
@@ -104,11 +104,30 @@ main {
   &.show {
     display: block;
   }
+  .close-modal {
+    position: absolute;
+    right: -17px;
+    top: -24px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .modal-content {
+    position: relative;
+    box-sizing: border-box;
+    padding: 15px;
+  }
   .modal-dialog{
     background: white;
     margin: 30% auto;
-    width: 30%;
+    width: 60%;
+    min-width: 400px;
     text-align: center;
+  }
+  .btn {
+    width: 33%;
+    margin: 0 2%;
   }
 }
 
@@ -128,7 +147,6 @@ main {
     top: -4px;
     left: 9px;
     color: $gray;
-    opacity: 0.7;
     font-size: 22px;
   }
 }
@@ -162,7 +180,7 @@ main {
     max-height: 0;
     padding: 0 15px;
     overflow: hidden;
-    transition: max-height 0.25s ease-in-out;
+    transition: max-height 0.3s ease-in-out;
   }
 }
 

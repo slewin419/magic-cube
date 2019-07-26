@@ -20,26 +20,29 @@ function browserSyncReload(){
 
 function css(){
   return gulp.src("index.scss")
-    .pipe(sass())
-    .pipe(gulp.dest("./"))
-    .pipe(browsersync.stream());
+  .pipe(sass())
+  .pipe(gulp.dest("./"))
+  .pipe(browsersync.stream());
 }
 
 function js(){
   return gulp.src("src/index.js")
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
-    .pipe(gulp.dest('dist'))
-    .pipe(browsersync.stream());
+  .pipe(babel({
+    presets: ['@babel/env']
+  }))
+  .pipe(gulp.dest('dist'))
+  .pipe(browsersync.stream());
 }
 
 function watchFiles() {
-  gulp.watch("index.html").on('change', browserSyncReload);
-  gulp.watch("index.scss", css, browserSyncReload);
-  gulp.watch("src/index.js", js, browserSyncReload);
+  gulp.watch("index.scss", css);
+  //gulp.watch("src/index.js", js);
+
+  gulp.watch("index.html").on('change', browsersync.reload);
+  //gulp.watch("index.scss").on('change', browsersync.reload);
+  //gulp.watch("src/index.js").on('change', browsersync.reload);
 }
 
-const build = gulp.series(serve, css, js, watchFiles);
+const build = gulp.series(css, serve, watchFiles);
 
 exports.default = build;

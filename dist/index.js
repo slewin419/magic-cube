@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-(function () {
+(function() {
   var fundingDaysLeft = 0,
-      fundingGoalAmount = 600,
       numOfDonations = 0,
       totalDonationAmount = 0,
-      fundingProgressPercent = 0;
+      fundingProgressPercent = 0,
+      fundingGoalAmount = 600;
   var $fundingDaysLeft = $('#funding-days-left'),
       $fundingRemaining = $('#funding-remaining'),
       $donationForm = $('#donation-form'),
@@ -37,56 +37,94 @@
     return numOfDonations;
   }
 
-  $donationForm.on('submit', function () {
+  function confirm2(question) {
+    $modalBackDrop.addClass('show');
+    $confirmDonation.addClass('show');
+    $('#confirm-question').text(question);
+
+    var defer = $.Deferred();
+    $confirmDonation.find('.btn').one('click', function(){
+        if($(this).hasClass('yes')){
+            defer.resolve("true");
+            closeConfirm();
+        } else {
+            defer.resolve("false");
+            closeConfirm();
+        }
+    });
+
+    var closeConfirm = function(){
+      $modalBackDrop.removeClass('show');
+      $confirmDonation.removeClass('show');
+    }
+
+    $confirmDonation.find('.close-modal').on('click', closeConfirm);
+
+    return defer.promise();
+  }
+
+  $donationForm.on('submit', function(e) {
+    e.preventDefault();
     var donationAmount = parseInt($donationAmount.val());
 
     if (donationAmount <= 0) {
       return false;
     }
 
-    $modalBackDrop.addClass('show');
-    $confirmDonation.addClass('show');
-    return false;
-    addDonation(donationAmount);
-    numOfDonations++;
-    renderForm();
-    return false;
+    var donationConfirmed = confirm2('Are you sure you want to donate $' + $donationAmount.val());
+
+    donationConfirmed.then(function(answer){
+      if (answer === "true") {
+        addDonation(donationAmount);
+        numOfDonations++;
+        renderForm();
+      }
+    });
+
   }); //Setup view
 
   function renderForm() {
     $fundingDaysLeft.text(getFundingDaysLeft);
     $fundingRemaining.text(getFundingRemaining);
     $numOfDonations.text(getNumberOfDonations);
-    $fundingProgressBar.css('width', function () {
+    $fundingProgressBar.css('width', function() {
       return donationProgress() + '%';
     });
   }
 
   renderForm(); //Panels
 
-  $('.panel').on('click', '.panel-header', function (e) {
+  $('.panel').on('click', '.panel-header', function(e) {
     e.preventDefault();
     $('.panel').removeClass('active');
     $(this).closest('.panel').toggleClass('active');
   }); //Tabs
 
-  $('.tabs').on('click', 'li', function (e) {
+  $('.tabs').on('click', 'li', function(e) {
     e.preventDefault();
     var tabContentId = $(this).find('a')[0].hash;
     $('.tab-panel').removeClass('active');
     $('.tabs').find(tabContentId).toggleClass('active');
   }); //Weather
 
+  var OPEN_WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/weather';
   var OPEN_WEATHER_API_KEY = '74d9bc317f6cb40688304324e3555d46';
-  $('.weather-btn').on('click', function () {
+  $('.weather-btn').on('click', function() {
     var cityId = $(this).data('city-id');
     getWeatherData(cityId).then(displayWeatherData);
   });
 
+  /**
+   * Get current weather info from OpenWeather API
+   *
+   * @param cityId
+   * @returns {Deffered}
+   */
+
   function getWeatherData(cityId) {
-    return $.get('//api.openweathermap.org/data/2.5/weather', {
+    return $.get(OPEN_WEATHER_API_URL, {
       id: cityId,
-      appid: OPEN_WEATHER_API_KEY
+      appid: OPEN_WEATHER_API_KEY,
     });
   }
 
