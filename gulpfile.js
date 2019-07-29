@@ -1,48 +1,58 @@
-"use strict";
+'use strict';
+
+var fs = require('fs');
 
 const gulp        = require("gulp");
-const browsersync = require("browser-sync").create();
+const browserSync = require("browser-sync").create();
 const sass        = require("gulp-sass");
 const babel       = require("gulp-babel");
 
-function serve(done){
-  browsersync.init({
+//Set your paths here
+var paths = {
+  html: {
+    src: "*.html",
+    dist: null
+  },
+  scss: {
+    src: "*.scss",
+    dist: "./"
+  },
+  js: {
+    src: "src/*.js",
+    dist: "dist"
+  }
+};
+
+function css(){
+  return gulp.src(paths.scss.src)
+  .pipe(sass())
+  .pipe(gulp.dest(paths.scss.dist))
+  .pipe(browserSync.stream());
+}
+
+function js(){
+  return gulp.src(paths.js.src)
+  .pipe(babel({
+    presets: ['@babel/env']
+  }))
+  .pipe(gulp.dest(paths.js.dist))
+  .pipe(browserSync.stream());
+}
+
+function sync(){
+  browserSync.init({
     server: {
       baseDir: "./"
     }
   });
-  done();
+
+  gulp.watch("*.scss", css);
+  gulp.watch("src/*.js", js);
+  gulp.watch(paths.html.src).on('change', browserSync.reload);
 }
 
-function browserSyncReload(){
-  browsersync.reload();
+function defaultTask(){
+  sync();
 }
 
-function css(){
-  return gulp.src("index.scss")
-  .pipe(sass())
-  .pipe(gulp.dest("./"))
-  .pipe(browsersync.stream());
-}
-
-function js(){
-  return gulp.src("src/index.js")
-  .pipe(babel({
-    presets: ['@babel/env']
-  }))
-  .pipe(gulp.dest('dist'))
-  .pipe(browsersync.stream());
-}
-
-function watchFiles() {
-  gulp.watch("index.scss", css);
-  //gulp.watch("src/index.js", js);
-
-  gulp.watch("index.html").on('change', browsersync.reload);
-  //gulp.watch("index.scss").on('change', browsersync.reload);
-  //gulp.watch("src/index.js").on('change', browsersync.reload);
-}
-
-const build = gulp.series(css, serve, watchFiles);
-
-exports.default = build;
+exports.default = defaultTask;
